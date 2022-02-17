@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Launch } from './schemas';
+import { LaunchesService } from './services/launches.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-project-with-graphql';
+  launches: Launch[] = []
+  limitLaunches = 3
+
+  constructor(private launchesService: LaunchesService) {
+    this.getLaunchesPast(this.limitLaunches)
+  }
+
+  getLaunchesPast(limit: number) {
+    this.launchesService
+      .getLaunches(limit)
+      .subscribe(res => this.launches = res)
+  }
 }

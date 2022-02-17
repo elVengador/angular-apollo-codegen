@@ -1,0 +1,5 @@
+generates:
+  ./src/app/schemas.ts:   # <--- path where generate schemas
+    schema: https://api.spacex.land/graphql/ # <--- endpoint
+    plugins:
+      - typescript        # <--- plugin to generate ts
